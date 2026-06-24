@@ -53,24 +53,24 @@ export const projectsData: ProjectItem[] = [
     id: "proj-1",
     number: "01",
     title: "Forms Nexus Service",
-    description: "A high-performance serverless API built with Go designed to operate as an asynchronous notification router. Programmed cloud infrastructure via IaC using AWS CDK v2, deploying Lambda (ARM64), API Gateway, and DynamoDB. Integrated Telegram Bot API and Amazon SES.",
+    description: "High-performance serverless API built with Go, designed to operate as an asynchronous notification router. Programmed cloud infrastructure via IaC using AWS CDK v2, deploying Lambda (ARM64), API Gateway, and DynamoDB. Integrated Telegram Bot API and Amazon SES for alerting channels.",
     tech: ["Go", "AWS CDK v2", "Lambda", "DynamoDB"],
-    githubUrl: "https://github.com"
+    githubUrl: "https://github.com/FrenekLopez/forms-nexus-svc.git"
   },
   {
     id: "proj-2",
     number: "02",
     title: "Umami Cloud Go",
-    description: "Spearheaded the architecture design and infrastructure development of a backend REST API built with Go (Gin). Engineered automated provisioning workflows on AWS utilizing CloudFormation. Orchestrated CI/CD pipelines through GitHub Actions and Docker.",
+    description: "Robust backend REST API developed in Go using the Gin framework. Led the architecture design and infrastructure development using AWS CloudFormation. Automated CI/CD pipelines via GitHub Actions and achieved optimized application performance through Docker containerization.",
     tech: ["Go", "Gin", "CloudFormation", "Docker"],
-    githubUrl: "https://github.com"
+    githubUrl: "https://github.com/IlmarLopez/umami-cloud-go.git"
   },
   {
     id: "proj-3",
     number: "03",
     title: "Serverless Developer Portfolio",
-    description: "Modern, highly-optimized developer portfolio built with Next.js, React, and Tailwind CSS. Features advanced Framer Motion animations and integrates directly with an AWS serverless backend (API Gateway & Lambda) for secure contact form processing.",
+    description: "Highly optimized web portfolio built with Next.js, React, and Tailwind CSS. Implements advanced Framer Motion animations and integrates directly with an AWS serverless backend (API Gateway + Lambda) for secure contact form processing.",
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "Serverless"],
-    githubUrl: "https://github.com"
+    githubUrl: "https://github.com/FrenekLopez/freneklopez-dev.git"
   }
 ];
