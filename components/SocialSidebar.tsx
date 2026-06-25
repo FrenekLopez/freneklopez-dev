@@ -4,7 +4,8 @@ import React from "react";
 import { motion } from "framer-motion";
 
 // COMPONENT: SOCIAL SIDEBAR INTERACTION LINK MATRIX
-// Floating anchoring navigation layer handling remote channel pathways
+// Floating a 
+// nchoring navigation layer handling remote channel pathways
 
 export default function SocialSidebar() {
   return (

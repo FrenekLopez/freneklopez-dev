@@ -53,6 +53,7 @@ export const projectsData: ProjectItem[] = [
     id: "proj-1",
     number: "01",
     title: "Forms Nexus Service",
+    category: "Backend",
     description: "High-performance serverless API built with Go, designed to operate as an asynchronous notification router. Programmed cloud infrastructure via IaC using AWS CDK v2, deploying Lambda (ARM64), API Gateway, and DynamoDB. Integrated Telegram Bot API and Amazon SES for alerting channels.",
     tech: ["Go", "AWS CDK v2", "Lambda", "DynamoDB"],
     githubUrl: "https://github.com/FrenekLopez/forms-nexus-svc.git"
@@ -61,6 +62,7 @@ export const projectsData: ProjectItem[] = [
     id: "proj-2",
     number: "02",
     title: "Umami Cloud Go",
+    category: "Backend",
     description: "Robust backend REST API developed in Go using the Gin framework. Led the architecture design and infrastructure development using AWS CloudFormation. Automated CI/CD pipelines via GitHub Actions and achieved optimized application performance through Docker containerization.",
     tech: ["Go", "Gin", "CloudFormation", "Docker"],
     githubUrl: "https://github.com/IlmarLopez/umami-cloud-go.git"
@@ -69,8 +71,10 @@ export const projectsData: ProjectItem[] = [
     id: "proj-3",
     number: "03",
     title: "Serverless Developer Portfolio",
+    category:"Frontend",
     description: "Highly optimized web portfolio built with Next.js, React, and Tailwind CSS. Implements advanced Framer Motion animations and integrates directly with an AWS serverless backend (API Gateway + Lambda) for secure contact form processing.",
     tech: ["Next.js", "TypeScript", "Tailwind CSS", "Serverless"],
     githubUrl: "https://github.com/FrenekLopez/freneklopez-dev.git"
   }
 ];
+ 

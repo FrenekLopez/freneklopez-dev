@@ -30,6 +30,7 @@ export interface ProjectItem {
   id: string;
   number: string;
   title: string;
+  category: string;
   description: string;
   tech: string[];
   githubUrl: string;

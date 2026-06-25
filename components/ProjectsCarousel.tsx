@@ -44,7 +44,9 @@ export default function ProjectsCarousel({ carouselRef, scrollCarousel }: Projec
             <div>
               <div className="flex justify-between items-start mb-6">
                 <span className="text-5xl font-black text-slate-800/50 group-hover:text-blue-500/20 transition-colors">{project.number}</span>
-                <span className="text-xs font-bold uppercase tracking-widest text-slate-500">Backend</span>
+                <span className="text-xs font-bold uppercase tracking-widest text-slate-500">
+                {project.category}
+                </span>
               </div>
               <h4 className="text-2xl font-bold text-white mb-4 group-hover:text-blue-400 transition-colors">{project.title}</h4>
               <p className="text-slate-400 text-sm leading-relaxed mb-8">{project.description}</p>
