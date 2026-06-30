@@ -70,10 +70,9 @@ export default function RootLayout({
       <body className={`${inter.className} bg-[#0f1624] text-slate-300 antialiased selection:bg-blue-500/30`}>
         {children}
         <Script
-        defer
         src="/stats/script.js"
         data-website-id="b22f6a23-d889-488d-84b2-90af6cd8878c"
-        strategy="lazyOnload"
+        strategy="afterInteractive"
         />
       </body>
     </html>
