@@ -11,6 +11,12 @@ interface ContactFormProps {
 }
 
 export default function ContactForm({ formRef, onSubmit, isSubmitting }: ContactFormProps) {
+   const handleSubmit = (e: React.BaseSyntheticEvent) => {
+    e.preventDefault(); // Prevents browser hard-reload keeping user inputs intact on error
+    const data = new FormData(e.currentTarget);
+    onSubmit(data); // Safely dispatches the plain FormData upstream to your page.tsx
+  };
+
   return (
     <motion.section 
       id="contact" 
@@ -29,7 +35,7 @@ export default function ContactForm({ formRef, onSubmit, isSubmitting }: Contact
           <h2 className="text-5xl font-bold text-white mb-8 leading-tight">Have a project?<br/>Let's talk!</h2>
         </div>
         <div className="flex-1 w-full">
-          <form ref={formRef} action={onSubmit} className="flex flex-col gap-8">
+          <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-8">
             <input type="text" name="name" required disabled={isSubmitting} placeholder="Name" className="w-full bg-transparent border-b border-slate-700 pb-3 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-0 disabled:opacity-50 disabled:cursor-not-allowed transition-all" />
             <input type="email" name="email" required disabled={isSubmitting} placeholder="Email" className="w-full bg-transparent border-b border-slate-700 pb-3 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-0 disabled:opacity-50 disabled:cursor-not-allowed transition-all" />
             <div className="relative">
