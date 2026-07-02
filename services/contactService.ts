@@ -1,7 +1,12 @@
 import { z } from "zod";
 import { toast } from "react-hot-toast";
 import { RefObject } from "react"; 
-import { ContactPayload } from "../types"; // Sube un nivel a la raíz y entra a types
+import { ContactPayload } from "../types";
+
+
+//
+const COOLDOWN_DURATION = 5 * 60 * 1000
+const STORAGE_KEY =  "fn_last_submit_time"
 
 // FORM SANITIZATION SCHEMA DEFINITION
 export const contactValidationSchema = z.object({
@@ -40,6 +45,23 @@ export const executeFormSubmission = async ({ formData, setStatus, formRef }: Su
     return;
   }
 
+   const lastSubmitTime = localStorage.getItem(STORAGE_KEY);
+  const currentTime = Date.now();
+
+  if (lastSubmitTime) {
+    const timePassed = currentTime - parseInt(lastSubmitTime, 10);
+    
+    if (timePassed < COOLDOWN_DURATION) {
+      const remainingSeconds = Math.ceil((COOLDOWN_DURATION - timePassed) / 1000);
+      const remainingMinutes = Math.ceil(remainingSeconds / 60);
+      
+      setStatus("error");
+      toast.error(`Rate Limit: Please wait ${remainingMinutes} more minute(s) before sending another message.`, { id: loadingToastId });
+      setTimeout(() => setStatus("idle"), 3000);
+      return; 
+    }
+  }
+
   // 1. Extract and map raw input data fields
   const rawPayload = {
     name: (formData.get("name")?.toString() || "").trim(),
@@ -70,6 +92,7 @@ export const executeFormSubmission = async ({ formData, setStatus, formRef }: Su
     });
 
     if (!response.ok) throw new Error(`API Request Failed. Status: ${response.status}`);
+    localStorage.setItem(STORAGE_KEY, Date.now().toString());
     
     setStatus("success");
     toast.success("Message transmitted successfully! I'll get back to you soon.", { id: loadingToastId });
