@@ -11,7 +11,7 @@ export default function HeroSection() {
       initial="hidden" 
       animate="visible" 
       variants={fadeUpVariant}
-      className="flex flex-col md:flex-row gap-16 items-center justify-between pt-12"
+      className="flex flex-col md:flex-row gap-16 items-center justify-between pt-36"
     >
       <div className="flex-1 w-full flex justify-center md:justify-start relative">
         <div className="absolute top-1/2 left-1/2 md:left-[40%] -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-blue-500/15 blur-[100px] -z-10 rounded-full pointer-events-none"></div>

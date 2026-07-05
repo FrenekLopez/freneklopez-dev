@@ -2,6 +2,7 @@
 
 import React, { useState, useRef } from "react";
 import { Toaster } from "react-hot-toast";
+import ParticleBackground from "@/components/ParticleBackground";
 
 // Data Layers & Configuration Imports
 import { fadeUpVariant } from "../constants/animations";
@@ -19,9 +20,13 @@ import Footer from "../components/Footer";
 
 export default function Home() {
   // RUNTIME STATE LIFECYCLE MANAGEMENT
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error" >("idle");
-  const [activeTab, setActiveTab] = useState<"experience" | "education">("experience");
-  
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
+  const [activeTab, setActiveTab] = useState<"experience" | "education">(
+    "experience",
+  );
+
   // DOM Elements Node References
   const formRef = useRef<HTMLFormElement>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -38,33 +43,54 @@ export default function Home() {
   // CORE LAYOUT ORCHESTRATION VIEW
   return (
     <main className="min-h-screen bg-[#0f1624] text-slate-300 font-sans selection:bg-blue-500/30 relative overflow-hidden">
-      
-      <Toaster 
+      <ParticleBackground />
+
+      <Toaster
         position="bottom-right"
         toastOptions={{
-          style: { background: '#1a2332', color: '#fff', border: '1px solid #334155' },
-          success: { iconTheme: { primary: '#3b82f6', secondary: '#fff' } }
-        }} 
+          style: {
+            background: "#1a2332",
+            color: "#fff",
+            border: "1px solid #334155",
+          },
+          success: { iconTheme: { primary: "#3b82f6", secondary: "#fff" } },
+        }}
       />
 
       <SocialSidebar />
       <Navbar />
 
-      <div className="max-w-6xl mx-auto px-6 flex flex-col gap-32 pb-16 md:pl-28">
-        <HeroSection />
+      <div className="fixed top-8 left-6 md:left-10 z-50">
+        <a
+          href="#home"
+          className="text-xl font-bold text-white tracking-widest hover:opacity-80 transition-opacity"
+        >
+          FULLSTACK <span className="text-blue-500">.</span>
+        </a>
+      </div>
+      <div className="relative z-10 max-w-6xl mx-auto px-6 flex flex-col gap-32 pb-16 md:pl-28">
+        <section id="home" className="scroll-mt-32">
+          <HeroSection />
+        </section>
+
         <TimelineSection activeTab={activeTab} setActiveTab={setActiveTab} />
         <SkillsSection />
-        <ProjectsCarousel carouselRef={carouselRef} scrollCarousel={scrollCarousel} />
-        
-        <ContactForm 
-          formRef={formRef} 
-          onSubmit={(formData) => executeFormSubmission({ formData, setStatus, formRef })} 
-          isSubmitting={isSubmitting} 
+        <ProjectsCarousel
+          carouselRef={carouselRef}
+          scrollCarousel={scrollCarousel}
         />
-        
+
+        <ContactForm
+          formRef={formRef}
+          onSubmit={(formData) =>
+            executeFormSubmission({ formData, setStatus, formRef })
+          }
+          isSubmitting={isSubmitting}
+          status={status}
+        />
+
         <Footer />
       </div>
-
     </main>
   );
 }
