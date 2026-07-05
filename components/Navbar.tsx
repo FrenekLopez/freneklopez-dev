@@ -8,21 +8,38 @@ import { motion } from "framer-motion";
 
 export default function Navbar() {
   return (
-    <motion.nav 
+    <motion.header
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      className="max-w-6xl mx-auto px-6 py-8 flex justify-between items-center md:pl-28 relative z-20"
+      transition={{ duration: 0.5 }}
+      className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-auto"
     >
-      <div className="text-xl font-bold text-white tracking-widest">
-        CLOUD & BACKEND <span className="text-blue-500">.</span>
-      </div>
-      <div className="hidden md:flex gap-8 text-sm font-medium text-slate-400">
-        <a href="#" className="hover:text-white transition-colors focus-visible:outline-none focus-visible:text-blue-500">Home</a>
-        <a href="#experience" className="hover:text-white transition-colors focus-visible:outline-none focus-visible:text-blue-500">Experience</a>
-        <a href="#projects" className="hover:text-white transition-colors focus-visible:outline-none focus-visible:text-blue-500">Projects</a>
-        <a href="#contact" className="hover:text-white transition-colors focus-visible:outline-none focus-visible:text-blue-500">Contact</a>
-      </div>
-    </motion.nav>
+      <nav className="flex items-center justify-center gap-6 md:gap-10 px-8 py-3 rounded-full bg-[#0a0f1a]/80 backdrop-blur-md border border-white/10 shadow-lg shadow-blue-900/20">
+        <a
+          href="#home"
+          className="text-sm font-medium text-slate-300 hover:text-white hover:-translate-y-0.5 transition-all"
+        >
+          Home
+        </a>
+        <a
+          href="#experience"
+          className="text-sm font-medium text-slate-300 hover:text-white hover:-translate-y-0.5 transition-all"
+        >
+          Experience
+        </a>
+        <a
+          href="#projects"
+          className="text-sm font-medium text-slate-300 hover:text-white hover:-translate-y-0.5 transition-all"
+        >
+          Projects
+        </a>
+        <a
+          href="#contact"
+          className="text-sm font-medium text-slate-300 hover:text-white hover:-translate-y-0.5 transition-all"
+        >
+          Contact
+        </a>
+      </nav>
+    </motion.header>
   );
 }
