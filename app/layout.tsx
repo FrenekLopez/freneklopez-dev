@@ -13,7 +13,8 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://freneklopez.dev";
 // Fully optimized for Google discovery under variants like Eric Lopez, Frenek Lopez, or desarrollador Eric.
 export const metadata: Metadata = {
   title: "Eric Lopez Rosales | Cloud Architecture & Backend Software Engineer",
-  description: "Professional portfolio of Eric Lopez Rosales (Frenek Lopez / desarrollador Eric). Specializing in backend software development with Go (Golang) and automated serverless cloud infrastructure on AWS.",
+  description:
+    "Professional portfolio of Eric Lopez Rosales (Frenek Lopez / desarrollador Eric). Specializing in backend software development with Go (Golang) and automated serverless cloud infrastructure on AWS.",
   keywords: [
     "Eric Lopez Rosales",
     "Eric Lopez",
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
     "Go",
     "Golang",
     "AWS",
-    "Serverless"
+    "Serverless",
   ],
   authors: [{ name: "Eric Lopez Rosales", url: "https://github.com" }],
   creator: "Eric Lopez Rosales",
@@ -42,7 +43,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Eric Lopez Rosales | Cloud Architecture Portfolio",
-    description: "High-performance backend systems and automated cloud infrastructure built by Eric Lopez Rosales.",
+    description:
+      "High-performance backend systems and automated cloud infrastructure built by Eric Lopez Rosales.",
     url: siteUrl, // Target canonical address parsed dynamically
     siteName: "Eric Lopez Rosales Portfolio",
     images: [
@@ -67,12 +69,14 @@ export default function RootLayout({
     // 'scroll-smooth' enables native smooth scrolling for section anchor elements
     // Language set to English to align with your professional international resume content
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.className} bg-[#0f1624] text-slate-300 antialiased selection:bg-blue-500/30`}>
+      <body
+        className={`${inter.className} bg-[#0f1624] text-slate-300 antialiased selection:bg-blue-500/30`}
+      >
         {children}
         <Script
-        src="/stats/script.js"
-        data-website-id="b22f6a23-d889-488d-84b2-90af6cd8878c"
-        strategy="afterInteractive"
+          src="/stats/script.js"
+          data-website-id="c41636ec-6a33-408c-9df0-f23b7a3252ac"
+          strategy="afterInteractive"
         />
       </body>
     </html>

@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/stats/:match*",
-        destination: "http://3.144.237.139:3000/:match*",
+        destination: "http://3.15.21.127:3000/:match*",
       },
     ];
   },
@@ -16,10 +16,10 @@ const nextConfig: NextConfig = {
   async headers() {
     const cspPolicy = `
       default-src 'self';
-      script-src 'self' 'unsafe-inline' 'unsafe-eval' http://3.144.237.139:3000;
+      script-src 'self' 'unsafe-inline' 'unsafe-eval' http://3.15.21.127:3000 ;
       style-src 'self' 'unsafe-inline';
       img-src 'self' blob: data:;
-      connect-src 'self' ${process.env.NEXT_PUBLIC_API_URL || ""} http://3.144.237.139:3000;
+      connect-src 'self' ${process.env.NEXT_PUBLIC_API_URL || ""} http://3.15.21.127:3000;
       font-src 'self';
       object-src 'none';
       base-uri 'self';
