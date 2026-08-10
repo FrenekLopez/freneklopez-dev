@@ -3,7 +3,6 @@ import { toast } from "react-hot-toast";
 import { RefObject } from "react";
 import { ContactPayload } from "../types";
 
-//
 const COOLDOWN_DURATION = 5 * 60 * 1000;
 const STORAGE_KEY = "fn_last_submit_time";
 
@@ -33,7 +32,53 @@ interface SubmitFormOptions {
 }
 
 /**
- * Isolated business logic execution block handling input parsing, validation, and network transport
+ * Checks whether the user needs to wait due to the rate limit.
+ * REturs whether the request is allowed and the error message, if applicable.
+ */
+const checkRateLimit = (): { allowed: boolean; errorMessage?: string } => {
+  const lastSubmitTime = localStorage.getItem(STORAGE_KEY);
+  if (!lastSubmitTime) return { allowed: true };
+
+  const timePassed = Date.now() - parseInt(lastSubmitTime, 10);
+  if (timePassed < COOLDOWN_DURATION) {
+    const remainingSeconds = Math.ceil((COOLDOWN_DURATION - timePassed) / 1000);
+    const remainingMinutes = Math.ceil(remainingSeconds / 60);
+    return {
+      allowed: false,
+      errorMessage: `Rate Limit: Please wait ${remainingMinutes} more minute(s) before sending another message.`,
+    };
+  }
+  return { allowed: true };
+};
+
+/**
+ * Extracts and cleans the raw data from FormData
+ */
+
+const extractPayload = (formData: FormData) => ({
+  name: (formData.get("name")?.toString() || "").trim(),
+  email: (formData.get("email")?.toString() || "").trim(),
+  target_channel: formData.get("target_channel")?.toString() || "telegram",
+  message: (formData.get("message")?.toString() || "").trim(),
+});
+
+/**
+ * HTTP communication with the API
+ */
+const sendToApi = async (apiUrl: string, payload: ContactPayload) => {
+  const response = await fetch(apiUrl, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    throw new Error(`API Request Failed. Status: ${response.status}`);
+  }
+};
+
+/**
+ * PUBLIC METHOD
  */
 export const executeFormSubmission = async ({
   formData,
@@ -49,36 +94,17 @@ export const executeFormSubmission = async ({
     return;
   }
 
-  const lastSubmitTime = localStorage.getItem(STORAGE_KEY);
-  const currentTime = Date.now();
-
-  if (lastSubmitTime) {
-    const timePassed = currentTime - parseInt(lastSubmitTime, 10);
-
-    if (timePassed < COOLDOWN_DURATION) {
-      const remainingSeconds = Math.ceil(
-        (COOLDOWN_DURATION - timePassed) / 1000,
-      );
-      const remainingMinutes = Math.ceil(remainingSeconds / 60);
-
-      setStatus("error");
-      toast.error(
-        `Rate Limit: Please wait ${remainingMinutes} more minute(s) before sending another message.`,
-      );
-      setTimeout(() => setStatus("idle"), 3000);
-      return;
-    }
+  // 1. Rate Limit Check
+  const rateLimit = checkRateLimit();
+  if (!rateLimit.allowed) {
+    setStatus("error");
+    toast.error(rateLimit.errorMessage as string, {});
+    setTimeout(() => setStatus("idle"), 3000);
+    return;
   }
 
-  // 1. Extract and map raw input data fields
-  const rawPayload = {
-    name: (formData.get("name")?.toString() || "").trim(),
-    email: (formData.get("email")?.toString() || "").trim(),
-    target_channel: formData.get("target_channel")?.toString() || "telegram",
-    message: (formData.get("message")?.toString() || "").trim(),
-  };
-
-  // 2. Perform validation checks
+  // 2. Extraction Validation (Zod)
+  const rawPayload = extractPayload(formData);
   const validationResult = contactValidationSchema.safeParse(rawPayload);
 
   if (!validationResult.success) {
@@ -90,27 +116,19 @@ export const executeFormSubmission = async ({
     return;
   }
 
-  // 3. Process secure and sanitized payload to API Endpoint
+  // 3. Sending data to the API
   try {
-    const payload: ContactPayload = validationResult.data;
+    await sendToApi(apiUrl, validationResult.data);
 
-    const response = await fetch(apiUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-
-    if (!response.ok)
-      throw new Error(`API Request Failed. Status: ${response.status}`);
+    // Registro de éxito
     localStorage.setItem(STORAGE_KEY, Date.now().toString());
-
     setStatus("success");
     formRef.current?.reset();
-    setTimeout(() => setStatus("idle"), 3000);
   } catch (error) {
     console.error("Form dispatch failed:", error);
     setStatus("error");
     toast.error("Failed to transmit message. Please try again later.", {});
+  } finally {
     setTimeout(() => setStatus("idle"), 3000);
   }
 };
