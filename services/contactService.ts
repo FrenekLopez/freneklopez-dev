@@ -74,7 +74,7 @@ export const executeFormSubmission = async ({
   const rawPayload = {
     name: (formData.get("name")?.toString() || "").trim(),
     email: (formData.get("email")?.toString() || "").trim(),
-    target_channel: formData.get("target_channel")?.toString() || "telegram",
+    target_channel: "telegram",
     message: (formData.get("message")?.toString() || "").trim(),
   };
 

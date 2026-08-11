@@ -68,30 +68,6 @@ export default function ContactForm({
               placeholder="Email"
               className="w-full bg-transparent border-b border-slate-700 pb-3 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-0 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
             />
-            <div className="relative">
-              <select
-                name="target_channel"
-                defaultValue="telegram"
-                disabled={isSubmitting}
-                className="w-full bg-transparent border-b border-slate-700 pb-3 text-white focus:outline-none focus:border-blue-500 focus:ring-0 appearance-none disabled:opacity-50 disabled:cursor-not-allowed transition-all"
-              >
-                <option value="telegram" className="bg-[#0f1624] text-white">
-                  Route to: Telegram
-                </option>
-                <option value="email" className="bg-[#0f1624] text-white">
-                  Route to: Email
-                </option>
-              </select>
-              <div className="pointer-events-none absolute right-0 top-0 bottom-3 flex items-center px-2 text-slate-500">
-                <svg
-                  className="fill-current h-4 w-4"
-                  xmlns="http://w3.org"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                </svg>
-              </div>
-            </div>
             <textarea
               name="message"
               required
