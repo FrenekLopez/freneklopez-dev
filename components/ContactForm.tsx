@@ -58,7 +58,7 @@ export default function ContactForm({
               required
               disabled={isSubmitting}
               placeholder="Name"
-              className="w-full bg-transparent border-b border-slate-700 pb-3 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-0 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+              className="w-full bg-white/5 backdrop-blur-md border border-white/10 rounded-lg px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all duration-300"
             />
             <input
               type="email"
@@ -66,7 +66,7 @@ export default function ContactForm({
               required
               disabled={isSubmitting}
               placeholder="Email"
-              className="w-full bg-transparent border-b border-slate-700 pb-3 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-0 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+              className="w-full bg-white/5 backdrop-blur-md border border-white/10 rounded-lg px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all duration-300"
             />
             <textarea
               name="message"
@@ -74,7 +74,7 @@ export default function ContactForm({
               rows={4}
               disabled={isSubmitting}
               placeholder="Message"
-              className="w-full bg-transparent border-b border-slate-700 pb-3 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-0 resize-y disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+              className="w-full bg-white/5 backdrop-blur-md border border-white/10 rounded-lg px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all duration-300"
             ></textarea>
             <div className="pt-4">
               <button
