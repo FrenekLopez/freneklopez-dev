@@ -80,7 +80,7 @@ export default function ContactForm({
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 px-10 rounded transition-colors flex items-center justify-center gap-2 w-full md:w-auto"
+                className="flex items-center justify-center gap-2 px-8 py-3 mx-auto w-fit bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold rounded-lg shadow-lg hover:shadow-blue-500/30 transition-all duration-300 transform hover:-translate-y-0.5"
               >
                 {isSubmitting ? (
                   "Processing..."
