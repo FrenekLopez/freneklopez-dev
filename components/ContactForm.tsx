@@ -58,7 +58,7 @@ export default function ContactForm({
               required
               disabled={isSubmitting}
               placeholder="Name"
-              className="w-full bg-transparent border-b border-slate-700 pb-3 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-0 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+              className="w-full bg-white/5 backdrop-blur-md border border-white/10 rounded-lg px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all duration-300"
             />
             <input
               type="email"
@@ -66,45 +66,21 @@ export default function ContactForm({
               required
               disabled={isSubmitting}
               placeholder="Email"
-              className="w-full bg-transparent border-b border-slate-700 pb-3 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-0 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+              className="w-full bg-white/5 backdrop-blur-md border border-white/10 rounded-lg px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all duration-300"
             />
-            <div className="relative">
-              <select
-                name="target_channel"
-                defaultValue="telegram"
-                disabled={isSubmitting}
-                className="w-full bg-transparent border-b border-slate-700 pb-3 text-white focus:outline-none focus:border-blue-500 focus:ring-0 appearance-none disabled:opacity-50 disabled:cursor-not-allowed transition-all"
-              >
-                <option value="telegram" className="bg-[#0f1624] text-white">
-                  Route to: Telegram
-                </option>
-                <option value="email" className="bg-[#0f1624] text-white">
-                  Route to: Email
-                </option>
-              </select>
-              <div className="pointer-events-none absolute right-0 top-0 bottom-3 flex items-center px-2 text-slate-500">
-                <svg
-                  className="fill-current h-4 w-4"
-                  xmlns="http://w3.org"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                </svg>
-              </div>
-            </div>
             <textarea
               name="message"
               required
               rows={4}
               disabled={isSubmitting}
               placeholder="Message"
-              className="w-full bg-transparent border-b border-slate-700 pb-3 text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-0 resize-y disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+              className="w-full bg-white/5 backdrop-blur-md border border-white/10 rounded-lg px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all duration-300"
             ></textarea>
             <div className="pt-4">
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 px-10 rounded transition-colors flex items-center justify-center gap-2 w-full md:w-auto"
+                className="flex items-center justify-center gap-2 px-8 py-3 mx-auto w-fit bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold rounded-lg shadow-lg hover:shadow-blue-500/30 transition-all duration-300 transform hover:-translate-y-0.5"
               >
                 {isSubmitting ? (
                   "Processing..."
