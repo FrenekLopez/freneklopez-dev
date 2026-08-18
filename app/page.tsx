@@ -60,14 +60,6 @@ export default function Home() {
       <SocialSidebar />
       <Navbar />
 
-      <div className="fixed top-8 left-6 md:left-10 z-50">
-        <a
-          href="#home"
-          className="text-xl font-bold text-white tracking-widest hover:opacity-80 transition-opacity"
-        >
-          FULLSTACK <span className="text-blue-500">.</span>
-        </a>
-      </div>
       <div className="relative z-10 max-w-6xl mx-auto px-6 flex flex-col gap-32 pb-16 md:pl-28">
         <section id="home" className="scroll-mt-32">
           <HeroSection />
